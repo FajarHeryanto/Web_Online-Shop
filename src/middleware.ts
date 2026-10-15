@@ -1,17 +1,19 @@
-/**
- * @file middleware.ts
- * @description Middleware Next.js untuk proteksi route tertentu.
- *
- * Strategi:
- *   - Route PUBLIK: /, /products, /products/[slug], /login, /register
- *   - Route TERPROTEKSI: /checkout, /orders, /profile, /admin
- *
- * Jika pengunjung yang belum login mengakses route terproteksi,
- * mereka otomatis di-redirect ke /login?callbackUrl=[halaman-asal].
- * Setelah login berhasil, NextAuth akan redirect kembali ke callbackUrl.
- */
+import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
-export { default } from "next-auth/middleware";
+export default withAuth(
+  function middleware(req) {
+    return NextResponse.next();
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token,
+    },
+    pages: {
+      signIn: "/login",
+    },
+  }
+);
 
 export const config = {
   matcher: [
