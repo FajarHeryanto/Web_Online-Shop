@@ -43,7 +43,19 @@ import {
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
+  // Sanitize callbackUrl: middleware NextAuth sering mengirim URL absolut
+  // (mis. "http://localhost:3000/checkout") yang membuat router.push gagal.
+  // Kita extract path-nya saja agar selalu relatif.
+  const rawCallback = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = (() => {
+    try {
+      const url = new URL(rawCallback, window.location.origin);
+      return url.pathname + url.search;
+    } catch {
+      return rawCallback.startsWith("/") ? rawCallback : "/";
+    }
+  })();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,17 +80,29 @@ function LoginForm() {
         email: email.trim().toLowerCase(),
         password,
         redirect: false,
+        callbackUrl,
       });
 
       if (result?.error) {
         setError("Email atau password salah. Periksa kembali kredensial Anda.");
-      } else {
+        setIsLoading(false);
+      } else if (result?.ok) {
+        // Login berhasil — redirect ke callbackUrl
+        // Gunakan router.push + refresh, fallback ke window.location
         router.push(callbackUrl);
         router.refresh();
+
+        // Safety net: jika router.push tidak bekerja dalam 2 detik, paksa redirect
+        setTimeout(() => {
+          window.location.href = callbackUrl;
+        }, 2000);
+        // JANGAN setIsLoading(false) — biarkan spinner aktif sampai redirect selesai
+      } else {
+        setError("Login gagal. Silakan coba lagi.");
+        setIsLoading(false);
       }
     } catch {
       setError("Terjadi kesalahan server. Coba lagi.");
-    } finally {
       setIsLoading(false);
     }
   }
