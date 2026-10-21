@@ -23,8 +23,11 @@ export const authOptions: AuthOptions = {
           throw new Error("Email dan password harus diisi.");
         }
 
+        // Normalisasi email: lowercase + trim agar konsisten dengan registerUser()
+        const normalizedEmail = credentials.email.toLowerCase().trim();
+
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email: normalizedEmail },
         });
 
         if (!user || !user.password) {

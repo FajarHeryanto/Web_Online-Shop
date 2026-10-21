@@ -9,7 +9,6 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -78,22 +77,13 @@ export default function RegisterPage() {
         return;
       }
 
-      // Auto-login setelah daftar
-      const signInResult = await signIn("credentials", {
-        email: email.trim().toLowerCase(),
-        password,
-        redirect: false,
-      });
-
-      if (signInResult?.error) {
-        router.push("/login");
-      } else {
-        router.push("/");
-        router.refresh();
-      }
+      // Registrasi berhasil — arahkan ke halaman login dengan email pre-filled
+      // agar user tinggal memasukkan password saja.
+      const registeredEmail = encodeURIComponent(email.trim().toLowerCase());
+      router.push(`/login?registered=true&email=${registeredEmail}`);
+      // JANGAN setIsLoading(false) — biarkan spinner aktif sampai redirect selesai
     } catch {
       setError("Terjadi kesalahan. Coba lagi.");
-    } finally {
       setIsLoading(false);
     }
   }

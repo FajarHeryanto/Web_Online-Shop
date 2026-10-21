@@ -16,7 +16,7 @@
 
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -34,6 +34,7 @@ import {
   CreditCard,
   Copy,
   Check,
+  CheckCircle2,
 } from "lucide-react";
 
 // ============================================================
@@ -57,12 +58,24 @@ function LoginForm() {
     }
   })();
 
+  // Deteksi apakah user baru saja selesai mendaftar (redirect dari register page)
+  const isJustRegistered = searchParams.get("registered") === "true";
+  const prefillEmail = searchParams.get("email") || "";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [showRegisteredBanner, setShowRegisteredBanner] = useState(isJustRegistered);
+
+  // Pre-fill email dari parameter URL saat pertama kali render
+  useEffect(() => {
+    if (prefillEmail) {
+      setEmail(decodeURIComponent(prefillEmail));
+    }
+  }, [prefillEmail]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -201,6 +214,27 @@ function LoginForm() {
                 Masuk ke akun Anda untuk melanjutkan belanja.
               </p>
             </div>
+
+            {/* Banner sukses registrasi */}
+            {showRegisteredBanner && (
+              <div className="mb-6 flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
+                <div>
+                  <p className="font-medium">Akun berhasil dibuat!</p>
+                  <p className="mt-0.5 text-emerald-600">
+                    Silakan masukkan password Anda untuk masuk.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowRegisteredBanner(false)}
+                  className="ml-auto shrink-0 rounded-md p-0.5 text-emerald-400 transition-colors hover:text-emerald-600"
+                  aria-label="Tutup"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
 
             {/* Error */}
             {error && (

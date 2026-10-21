@@ -57,7 +57,7 @@ export async function registerUser(
     });
 
     if (existingUser) {
-      return { success: false, error: "Email sudah terdaftar. Silakan login." };
+      return { success: false, error: "Email sudah terdaftar, silakan gunakan email lain atau langsung login." };
     }
 
     // Hash password
