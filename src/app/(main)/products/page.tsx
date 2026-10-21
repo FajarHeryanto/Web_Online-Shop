@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     "Temukan berbagai produk berkualitas dengan harga terbaik. Filter dan cari produk sesuai kebutuhan Anda.",
 };
 
+// Paksa Vercel selalu fetch data terbaru dari DB, bukan cache saat build
+export const dynamic = "force-dynamic";
+
 // Tipe untuk search params di Next.js 16
 interface CatalogPageProps {
   searchParams: Promise<{

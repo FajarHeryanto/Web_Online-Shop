@@ -19,6 +19,9 @@ import { ArrowRight, Truck, ShieldCheck, Headphones } from "lucide-react";
 import { getProducts } from "@/actions/product.actions";
 import { ProductGrid } from "@/components/product/product-grid";
 
+// Paksa Vercel selalu fetch data terbaru dari DB, bukan cache saat build
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const { data: products } = await getProducts({
     page: 1,
@@ -355,7 +358,7 @@ export default async function HomePage() {
       {/* ============================================================
           PRODUCT SECTION
           ============================================================ */}
-      <section className="py-14 sm:py-20">
+      <section className="bg-white py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
