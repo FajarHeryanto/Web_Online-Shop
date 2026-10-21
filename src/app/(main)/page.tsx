@@ -1,21 +1,27 @@
 /**
  * @file app/(main)/page.tsx
- * @description Halaman utama dengan Hero Section CSS Grid 12-kolom.
+ * @description Halaman utama — Hero Section Bento Grid 12-kolom editorial modern.
  *
  * Layout Hero (Desktop lg:grid-cols-12):
- *   ┌──────────────┬─────────────────────┬───────────────┐
- *   │ col-span-4   │    col-span-5       │  col-span-3   │
- *   │ Bento Grid   │  Heading + CTA      │  2 Banner     │
- *   │ Brand+Parfum │  (clean, no overlap)│  Promo Vertikal│
- *   └──────────────┴─────────────────────┴───────────────┘
+ *   ┌──────────────────┬──────────────────────────┬────────────────┐
+ *   │ col-span-4       │      col-span-5          │  col-span-3    │
+ *   │ Lookbook +       │  Clean Centerpiece +     │  2 Campaign    │
+ *   │ Curated Brands   │  Showcase Grid           │  Cards         │
+ *   └──────────────────┴──────────────────────────┴────────────────┘
  *
- * Prinsip: TIDAK ada absolute positioning antar kolom.
- * Setiap zona hidup di grid cell-nya sendiri → tidak saling menutupi.
+ * Aturan: Tidak ada emoji. Semua ikon dari lucide-react.
+ * Semua gambar menggunakan <img> standar (bukan next/image).
  */
 
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Truck, ShieldCheck, Headphones } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Truck,
+  ShieldCheck,
+  Headphones,
+  Sparkles,
+} from "lucide-react";
 import { getProducts } from "@/actions/product.actions";
 import { ProductGrid } from "@/components/product/product-grid";
 
@@ -32,253 +38,243 @@ export default async function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO SECTION — CSS Grid 12-Kolom (Desktop)
+          HERO SECTION — Bento Grid 12-Kolom Editorial Modern
           ============================================================ */}
-      <section className="relative overflow-hidden bg-gray-50">
+      <section className="relative overflow-hidden bg-slate-50">
         {/* Background pola grid halus */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:3rem_3rem]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50" />
 
-        <div className="relative mx-auto max-w-[1440px] px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-          {/* ---- Mobile: Hanya tampil Tengah (CTA) ---- */}
-          {/* ---- Desktop: Grid 12 kolom ---- */}
-          <div className="grid min-h-[480px] grid-cols-1 items-stretch gap-6 lg:grid-cols-12">
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+          <div className="grid min-h-[520px] grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
 
             {/* ==================================================================
-                KOLOM KIRI (col-span-4) — Bento Grid: Model Pria, Brand, Parfum
+                KOLOM KIRI (col-span-4) — Editorial Lookbook & Curated Brands
                 ================================================================== */}
             <div className="hidden lg:col-span-4 lg:block">
-              <div className="grid h-full grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] gap-3">
+              <div className="grid h-full grid-cols-2 gap-4">
 
-                {/* Foto Model Pria — menempati 2 baris kiri */}
-                <div className="row-span-2 overflow-hidden rounded-2xl bg-gray-200/80">
-                  <div className="relative h-full w-full">
-                    <Image
-                      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=600&fit=crop&crop=top"
-                      alt="Pria bergaya kasual modern dengan jaket gelap"
-                      fill
-                      sizes="220px"
-                      className="object-cover object-top"
-                      priority
-                    />
+                {/* ---- Kartu Lookbook Utama (row-span-2) ---- */}
+                <div className="group relative row-span-2 overflow-hidden rounded-2xl shadow-sm">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+                    alt="Pria bergaya kasual modern"
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  {/* Teks label */}
+                  <div className="absolute bottom-0 left-0 p-5">
+                    <p className="text-[10px] font-medium uppercase tracking-widest text-white/80">
+                      Men&apos;s Collection
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-white">
+                      Autumn Essentials
+                    </p>
                   </div>
                 </div>
 
-                {/* Brand: shop at velvet */}
-                <div className="flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
-                  <p className="text-center text-xs font-bold uppercase leading-tight tracking-wider text-gray-800">
-                    shop at
-                    <br />
-                    velvet
-                  </p>
-                </div>
-
-                {/* Brand: Othman */}
-                <div className="flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
-                  <p className="text-center text-xs font-bold uppercase leading-tight tracking-wider text-gray-800">
-                    Othman
-                  </p>
-                </div>
-
-                {/* Parfum di atas podium silinder */}
-                <div className="flex flex-col items-center justify-end rounded-xl border border-gray-200 bg-gradient-to-b from-gray-50 to-gray-100 p-3 shadow-sm">
-                  <div className="relative mb-1 h-16 w-10 overflow-hidden rounded-md">
-                    <Image
-                      src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=120&h=200&fit=crop"
-                      alt="Parfum estetik"
-                      fill
-                      sizes="40px"
-                      className="object-cover"
-                    />
+                {/* ---- 3 Kartu Brand Eksklusif ---- */}
+                {[
+                  { name: "SHOP AT VELVET", category: "Womenswear" },
+                  { name: "OTHMAN", category: "Minimalist" },
+                  { name: "MERCH\u00C9", category: "Artisan Bags" },
+                ].map((brand) => (
+                  <div
+                    key={brand.name}
+                    className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-4 shadow-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-900"
+                  >
+                    {/* Kategori + ikon arrow */}
+                    <div className="flex items-start justify-between">
+                      <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400 transition-colors duration-300 group-hover:text-slate-400">
+                        {brand.category}
+                      </p>
+                      <ArrowUpRight className="h-3.5 w-3.5 text-slate-300 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                    </div>
+                    {/* Nama brand */}
+                    <p className="mt-auto text-lg font-black tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-white">
+                      {brand.name}
+                    </p>
                   </div>
-                  {/* Podium silinder */}
-                  <div className="h-8 w-8 rounded-t-full bg-gradient-to-b from-gray-500 to-gray-700" />
-                  <div className="h-2 w-10 rounded-b bg-gray-600" />
-                </div>
+                ))}
 
-                {/* Brand: merché */}
-                <div className="flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
-                  <p className="text-center text-xs font-bold uppercase leading-tight tracking-wider text-gray-800">
-                    merché
-                  </p>
-                </div>
-
-                {/* Brand: HIJACK SANDALS */}
-                <div className="flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
-                  <p className="text-center text-xs font-bold uppercase leading-tight tracking-wider text-gray-800">
-                    HIJACK
-                    <br />
-                    SANDALS
-                  </p>
+                {/* ---- Kartu Parfum & Aksesoris (col-span-2) ---- */}
+                <div className="group relative col-span-2 flex h-36 items-end overflow-hidden rounded-2xl shadow-sm">
+                  <img
+                    src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"
+                    alt="Koleksi parfum dan aksesoris artisan"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/40" />
+                  <div className="relative z-10 flex w-full items-end justify-between p-5">
+                    <div>
+                      <span className="inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+                        Exclusive Drop
+                      </span>
+                      <p className="mt-1.5 text-sm font-semibold text-white">
+                        Hijack Sandals & Artisan Scents
+                      </p>
+                    </div>
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors group-hover:bg-white/30">
+                      <ArrowUpRight className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* ==================================================================
-                KOLOM TENGAH (col-span-5) — Heading + CTA (Zona Bersih!)
+                KOLOM TENGAH (col-span-5) — Clean Centerpiece & Showcase
                 ================================================================== */}
-            <div className="flex flex-col items-center justify-center px-4 py-12 text-center lg:col-span-5 lg:py-0">
+            <div className="relative flex flex-col items-center justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/60 p-6 text-center shadow-sm backdrop-blur-sm sm:p-8 lg:col-span-5">
+              {/* Dekorasi background halus */}
+              <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-slate-100/80 blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-sky-50/60 blur-3xl" />
 
-              {/* Badge "Produk baru tersedia" */}
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-1.5 text-xs font-medium text-gray-700 shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                </span>
-                Produk baru tersedia
-              </div>
+              {/* ---- Bagian Atas: Copywriting ---- */}
+              <div className="relative z-10 flex flex-col items-center">
+                {/* Badge kapsul */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                  Koleksi Baru Tersedia
+                </div>
 
-              {/* Headline */}
-              <h1 className="max-w-lg text-4xl font-extrabold tracking-tight text-slate-900 leading-tight lg:text-5xl">
-                Belanja Online{" "}
-                <span className="text-slate-500">Mudah &</span>{" "}
-                Terpercaya
-              </h1>
+                {/* Headline */}
+                <h1 className="mt-5 text-4xl font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl">
+                  Belanja Online <br />
+                  <span className="bg-gradient-to-r from-slate-700 via-slate-500 to-slate-800 bg-clip-text text-transparent">
+                    Mudah & Terpercaya
+                  </span>
+                </h1>
 
-              {/* Subheadline */}
-              <p className="mt-4 max-w-md text-base leading-relaxed text-gray-500">
-                Temukan berbagai produk berkualitas dengan harga terbaik.
-                Pengiriman cepat ke seluruh Indonesia.
-              </p>
+                {/* Subheading */}
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-500 sm:text-base">
+                  Kurasi produk fashion, elektronik, dan kebutuhan harian
+                  terbaik dari brand lokal & resmi. Pengiriman instan ke seluruh
+                  Indonesia.
+                </p>
 
-              {/* CTA Button */}
-              <div className="mt-6">
+                {/* CTA Button */}
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-7 py-3.5 text-sm font-medium text-white shadow-md transition-all hover:bg-slate-800 active:scale-[0.97]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg active:scale-[0.97]"
                 >
-                  Lihat Katalog
-                  <ArrowRight className="h-4 w-4" />
+                  Jelajahi Katalog
+                  <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
 
-              {/* Aksen visual bawah: Model Wanita + Skincare — terkontrol */}
-              <div className="mt-8 flex items-end justify-center gap-3">
-                {/* Skincare Tubes */}
-                <div className="relative hidden h-[90px] w-[130px] overflow-hidden rounded-xl shadow-md sm:block">
-                  <Image
-                    src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=260&h=180&fit=crop"
-                    alt="Produk skincare kecantikan"
-                    fill
-                    sizes="130px"
-                    className="object-cover"
+              {/* ---- Bagian Bawah: Aesthetic Showcase Grid ---- */}
+              <div className="relative z-10 mt-8 grid w-full grid-cols-2 gap-3.5">
+                {/* Kartu Skincare & Beauty */}
+                <div className="group relative h-36 overflow-hidden rounded-2xl shadow-sm">
+                  <img
+                    src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
+                    alt="Skincare dan produk kecantikan"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <p className="text-xs font-semibold text-white">
+                      Beauty Care
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-white/70">
+                      Diskon s/d 40%
+                    </p>
+                  </div>
                 </div>
 
-                {/* Model Wanita */}
-                <div className="relative h-[140px] w-[100px] overflow-hidden rounded-2xl shadow-lg sm:h-[160px] sm:w-[120px]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&h=340&fit=crop&crop=top"
-                    alt="Wanita berambut pendek kasual"
-                    fill
-                    sizes="120px"
-                    className="object-cover object-top"
+                {/* Kartu Modern Apparel */}
+                <div className="group relative h-36 overflow-hidden rounded-2xl shadow-sm">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                    alt="Model fashion modern"
+                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <p className="text-xs font-semibold text-white">
+                      New Lookbook
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-white/70">
+                      Edisi Terbatas
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* ==================================================================
-                KOLOM KANAN (col-span-3) — 2 Kartu Promo Vertikal
+                KOLOM KANAN (col-span-3) — 2 Campaign Cards
                 ================================================================== */}
-            <div className="hidden flex-col gap-6 lg:col-span-3 lg:flex">
+            <div className="hidden flex-col gap-4 lg:col-span-3 lg:flex">
 
-              {/* ---- Kartu Atas: TokoOnline Mall 100% ORI ---- */}
-              <div className="relative flex flex-1 items-center justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-blue-950 p-6 text-white">
-                {/* Dekorasi blur */}
-                <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-500/20 blur-2xl" />
-                <div className="absolute -bottom-6 -left-6 h-20 w-20 rounded-full bg-blue-400/15 blur-xl" />
-
-                {/* Teks */}
-                <div className="relative z-10 shrink-0">
-                  <h3 className="text-lg font-bold text-white">
-                    TokoOnline Mall
-                  </h3>
-                  <p className="text-2xl font-extrabold text-sky-400">
-                    100% ORI
-                  </p>
-                  <p className="mt-1 text-xs text-blue-200/70">
-                    Produk resmi bergaransi
-                  </p>
-                </div>
-
-                {/* Produk Display — Ponsel + Sepatu */}
-                <div className="relative z-10 flex shrink-0 items-end gap-2">
-                  {/* Smartphone */}
-                  <div className="flex flex-col items-center">
-                    <div className="relative h-[60px] w-[36px] overflow-hidden rounded-md bg-white/10 shadow-md">
-                      <Image
-                        src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=100&h=180&fit=crop"
-                        alt="Smartphone"
-                        fill
-                        sizes="36px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="mt-0.5 h-3 w-10 rounded bg-blue-800/50" />
-                  </div>
-
-                  {/* Sepatu */}
-                  <div className="flex flex-col items-center">
-                    <div className="relative h-[40px] w-[55px] overflow-hidden rounded-md bg-white/10 shadow-md">
-                      <Image
-                        src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=150&h=110&fit=crop"
-                        alt="Sepatu kets putih"
-                        fill
-                        sizes="55px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="mt-0.5 h-3 w-14 rounded bg-blue-800/50" />
-                  </div>
-                </div>
-              </div>
-
-              {/* ---- Kartu Bawah: TokoOnline Barokah ---- */}
-              <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-950 p-6 text-center text-white">
-                {/* Motif Geometris */}
-                <div
-                  className="absolute inset-0 opacity-[0.06]"
+              {/* ---- Kartu 1: TokoOnline Mall (Official Store) ---- */}
+              <div className="group relative flex flex-1 flex-col justify-between overflow-hidden rounded-2xl bg-slate-950 p-6 text-white shadow-md">
+                {/* Foto produk sebagai background visual */}
+                <img
+                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
+                  alt="Sepatu sneakers"
+                  className="absolute bottom-0 right-0 h-full w-3/4 object-cover object-left opacity-20 transition-opacity duration-500 group-hover:opacity-30"
                   style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-rule='evenodd'%3E%3Cpath d='M20 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2H0z'/%3E%3C/g%3E%3C/svg%3E")`,
+                    maskImage: "linear-gradient(to left, black 30%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to left, black 30%, transparent 100%)",
                   }}
                 />
-
-                {/* Dekorasi lingkaran */}
-                <div className="absolute -left-10 top-2 h-24 w-24 rounded-full border border-white/5" />
-                <div className="absolute -right-6 -bottom-6 h-20 w-20 rounded-full border border-white/5" />
+                {/* Dekorasi blur */}
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-sky-500/15 blur-2xl" />
 
                 {/* Konten */}
                 <div className="relative z-10">
-                  {/* Icon dekoratif */}
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
-                    <span className="text-lg">🕌</span>
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-sky-300 backdrop-blur-sm">
+                    <ShieldCheck className="h-3 w-3" />
+                    Official Store
                   </div>
+                </div>
 
+                <div className="relative z-10 mt-auto">
+                  <h3 className="text-lg font-bold text-white">
+                    TokoOnline Mall
+                  </h3>
+                  <p className="text-2xl font-black text-sky-400">100% ORI</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+                    Garansi uang kembali & produk resmi
+                  </p>
+                </div>
+              </div>
+
+              {/* ---- Kartu 2: Modest & Lifestyle Promo ---- */}
+              <div className="group relative flex flex-1 flex-col justify-between overflow-hidden rounded-2xl shadow-md">
+                {/* Foto background editorial */}
+                <img
+                  src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80"
+                  alt="Koleksi busana modest fashion"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Overlay gradasi gelap hangat */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/85 to-slate-900/40" />
+
+                {/* Konten atas */}
+                <div className="relative z-10 p-6">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[11px] font-semibold text-amber-300 backdrop-blur-md">
+                    <Sparkles className="h-3 w-3" />
+                    SPESIAL PROMO
+                  </span>
+                </div>
+
+                {/* Konten bawah */}
+                <div className="relative z-10 p-6 pt-0">
                   <h3 className="text-lg font-bold leading-snug text-white">
                     TokoOnline Barokah
                   </h3>
-                  <p className="mt-0.5 text-sm font-medium text-indigo-200">
-                    Semua Kebutuhan
+                  <p className="mt-0.5 text-sm text-slate-300">
+                    Kurasi Busana & Kebutuhan Pilihan
                   </p>
-
-                  {/* Promo badge — teks putih bersih tanpa background kuning */}
-                  <div className="mt-3 rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-white">
-                      Diskon s.d. 80% | Voucher 100RB
-                    </p>
-                  </div>
-
-                  {/* Produk preview — ikon tipografi */}
-                  <div className="mt-4 flex items-center justify-center gap-2">
-                    {["👔", "👗", "📿"].map((emoji, i) => (
-                      <div
-                        key={i}
-                        className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-base"
-                      >
-                        {emoji}
-                      </div>
-                    ))}
-                  </div>
+                  <span className="mt-3 inline-block rounded-xl bg-white px-3.5 py-2 text-xs font-bold text-slate-900 shadow-sm">
+                    DISKON S.D. 80% + VOUCHER 100RB
+                  </span>
                 </div>
               </div>
             </div>
@@ -287,31 +283,40 @@ export default async function HomePage() {
           {/* ---- Mobile: Banner Promo (terlihat di bawah CTA) ---- */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
             {/* Mall Banner - Mobile */}
-            <div className="flex items-center justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-blue-950 p-5 text-white">
-              <div>
+            <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl bg-slate-950 p-5 text-white">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
+                alt="Sepatu sneakers"
+                className="absolute inset-0 h-full w-full object-cover opacity-15"
+              />
+              <div className="relative z-10">
+                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-sky-300">
+                  <ShieldCheck className="h-3 w-3" />
+                  Official Store
+                </div>
                 <h3 className="text-base font-bold">TokoOnline Mall</h3>
-                <p className="text-xl font-extrabold text-sky-400">100% ORI</p>
-              </div>
-              <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-white/10">
-                <Image
-                  src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=100&h=100&fit=crop"
-                  alt="Smartphone"
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                />
+                <p className="text-xl font-black text-sky-400">100% ORI</p>
               </div>
             </div>
 
             {/* Barokah Banner - Mobile */}
-            <div className="flex items-center justify-between overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-950 to-slate-900 p-5 text-white">
-              <div>
+            <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl p-5 text-white">
+              <img
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=400&q=80"
+                alt="Koleksi modest fashion"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 to-slate-900/60" />
+              <div className="relative z-10">
+                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold text-amber-300">
+                  <Sparkles className="h-3 w-3" />
+                  SPESIAL PROMO
+                </div>
                 <h3 className="text-base font-bold">TokoOnline Barokah</h3>
-                <p className="text-xs font-bold uppercase tracking-wider text-indigo-200">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-300">
                   Diskon s.d. 80%
                 </p>
               </div>
-              <span className="text-2xl">🕌</span>
             </div>
           </div>
         </div>
