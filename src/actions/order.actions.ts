@@ -16,6 +16,8 @@
 import { prisma } from "@/lib/prisma";
 import { generateOrderNumber } from "@/lib/utils";
 import { ORDERS_PER_PAGE } from "@/lib/constants";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 import type {
   ApiResponse,
   PaginatedResponse,
@@ -300,4 +302,160 @@ function isValidStatusTransition(
   };
 
   return allowedTransitions[current]?.includes(next) ?? false;
+}
+
+// ============================================================
+// 5. GET ORDER BY ORDER NUMBER (UNTUK HALAMAN DETAIL)
+// ============================================================
+
+/**
+ * Ambil detail pesanan berdasarkan orderNumber (ORD-YYYYMMDD-XXXXX).
+ * Divalidasi terhadap userId agar user hanya bisa lihat pesanan miliknya.
+ */
+export async function getOrderByNumber(
+  orderNumber: string,
+  userId: string
+): Promise<ApiResponse<OrderWithItems>> {
+  try {
+    const order = await prisma.order.findFirst({
+      where: { orderNumber, userId },
+      include: {
+        items: {
+          include: { product: true },
+        },
+      },
+    });
+
+    if (!order) {
+      return { success: false, error: "Pesanan tidak ditemukan." };
+    }
+
+    return { success: true, data: order };
+  } catch (error) {
+    console.error("[getOrderByNumber] Error:", error);
+    return { success: false, error: "Gagal mengambil data pesanan." };
+  }
+}
+
+// ============================================================
+// 6. CANCEL ORDER (PEMBATALAN PESANAN OLEH USER)
+// ============================================================
+
+/**
+ * Batalkan pesanan milik user. Proses dalam satu transaksi:
+ *   1. Validasi: user login & pemilik, status masih PENDING
+ *   2. Ubah status → CANCELLED
+ *   3. Kembalikan stok produk
+ *   4. Batalkan transaksi Midtrans (jika ada)
+ *
+ * Operasi idempotent: membatalkan pesanan yang sudah CANCELLED tidak error.
+ * userId diambil dari server session (bukan dari client) untuk keamanan.
+ */
+export async function cancelOrder(
+  orderId: string
+): Promise<ApiResponse<{ orderNumber: string }>> {
+  try {
+    // Ambil session di server
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return { success: false, error: "Anda harus login terlebih dahulu." };
+    }
+    const userId = session.user.id;
+
+    // 1. Ambil pesanan dan validasi kepemilikan
+    const order = await prisma.order.findFirst({
+      where: { id: orderId },
+      include: { items: true },
+    });
+
+    if (!order) {
+      return { success: false, error: "Pesanan tidak ditemukan." };
+    }
+
+    // Validasi kepemilikan
+    if (order.userId !== userId) {
+      return { success: false, error: "Anda tidak memiliki akses ke pesanan ini." };
+    }
+
+    // Idempotent: jika sudah dibatalkan, kembalikan sukses tanpa efek
+    if (order.status === OrderStatus.CANCELLED) {
+      return { success: true, data: { orderNumber: order.orderNumber } };
+    }
+
+    // Hanya bisa batalkan pesanan PENDING
+    if (order.status !== OrderStatus.PENDING) {
+      return {
+        success: false,
+        error: `Pesanan dengan status "${order.status}" tidak dapat dibatalkan.`,
+      };
+    }
+
+    // 2. Transaksi: update status + kembalikan stok (atomic)
+    await prisma.$transaction(async (tx) => {
+      // Update status ke CANCELLED
+      await tx.order.update({
+        where: { id: orderId },
+        data: { status: OrderStatus.CANCELLED },
+      });
+
+      // Kembalikan stok semua item
+      await Promise.all(
+        order.items.map((item) =>
+          tx.product.update({
+            where: { id: item.productId },
+            data: { stock: { increment: item.quantity } },
+          })
+        )
+      );
+    });
+
+    // 3. Batalkan transaksi Midtrans (best-effort, jangan gagalkan pembatalan)
+    try {
+      await cancelMidtransTransaction(order.orderNumber);
+    } catch (midtransError) {
+      // Log tapi jangan throw — pembatalan di DB sudah berhasil
+      console.warn(
+        `[cancelOrder] Gagal batalkan Midtrans untuk ${order.orderNumber}:`,
+        midtransError
+      );
+    }
+
+    return { success: true, data: { orderNumber: order.orderNumber } };
+  } catch (error) {
+    console.error("[cancelOrder] Error:", error);
+    return { success: false, error: "Gagal membatalkan pesanan. Coba lagi." };
+  }
+}
+
+/**
+ * Batalkan transaksi di Midtrans via Cancel API.
+ * Endpoint: POST /v2/{order_id}/cancel
+ */
+async function cancelMidtransTransaction(orderNumber: string): Promise<void> {
+  const serverKey = process.env.MIDTRANS_SERVER_KEY;
+  if (!serverKey) return;
+
+  const isProduction = process.env.MIDTRANS_IS_PRODUCTION === "true";
+  const baseUrl = isProduction
+    ? "https://api.midtrans.com/v2"
+    : "https://api.sandbox.midtrans.com/v2";
+
+  const authString = Buffer.from(`${serverKey}:`).toString("base64");
+
+  const response = await fetch(`${baseUrl}/${orderNumber}/cancel`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Basic ${authString}`,
+    },
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    // Status 412 = transaction not found / already cancelled — safe to ignore
+    if (response.status !== 412) {
+      console.warn(`[Midtrans Cancel] ${response.status}: ${body}`);
+    }
+  }
 }

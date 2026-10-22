@@ -64,14 +64,54 @@ export function truncate(text: string, maxLength: number): string {
 }
 
 /**
- * Generate order number unik dengan format: ORD-YYYYMMDD-XXXXX
+ * Format tanggal+waktu dalam zona WIB (Asia/Jakarta, UTC+7).
+ * Selalu menentukan timeZone eksplisit agar konsisten di server & client
+ * (menghindari hydration mismatch).
  *
  * @example
- *   generateOrderNumber() // → "ORD-20261006-A3F8K"
+ *   formatDateTimeWIB(new Date()) // → "22 Oktober 2026 pukul 19.57 WIB"
+ */
+export function formatDateTimeWIB(date: Date | string): string {
+  const d = new Date(date);
+  const formatted = d.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Jakarta",
+  });
+  return `${formatted} WIB`;
+}
+
+/**
+ * Format tanggal saja (tanpa jam) dalam zona WIB.
+ *
+ * @example
+ *   formatDateWIB(new Date()) // → "22 Oktober 2026"
+ */
+export function formatDateWIB(date: Date | string): string {
+  return new Date(date).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Jakarta",
+  });
+}
+
+/**
+ * Generate order number unik dengan format: ORD-YYYYMMDD-XXXXX
+ * Tanggal menggunakan WIB (Asia/Jakarta) agar konsisten dengan tampilan.
+ *
+ * @example
+ *   generateOrderNumber() // → "ORD-20261022-A3F8K"
  */
 export function generateOrderNumber(): string {
-  const date = new Date();
-  const dateStr = date.toISOString().slice(0, 10).replace(/-/g, "");
+  const now = new Date();
+  // Format tanggal WIB menggunakan locale sv-SE (YYYY-MM-DD)
+  const dateStr = now
+    .toLocaleDateString("sv-SE", { timeZone: "Asia/Jakarta" })
+    .replace(/-/g, "");
   const random = Math.random().toString(36).substring(2, 7).toUpperCase();
   return `ORD-${dateStr}-${random}`;
 }

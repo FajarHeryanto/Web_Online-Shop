@@ -152,9 +152,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Jangan update jika order sudah di status final (PAID, COMPLETED, CANCELLED)
-    if (["PAID", "COMPLETED", "CANCELLED"].includes(order.status) && newStatus === "PENDING") {
+    // Ini mencegah race condition: user batalkan pesanan → webhook Midtrans
+    // mencoba mengubah kembali ke PAID/PENDING
+    if (["PAID", "COMPLETED", "CANCELLED"].includes(order.status)) {
       console.log(
-        `[Midtrans Webhook] Order ${body.order_id} sudah ${order.status}. Tidak bisa kembali ke PENDING.`
+        `[Midtrans Webhook] Order ${body.order_id} sudah ${order.status}. Tidak bisa diubah ke ${newStatus}.`
       );
       return NextResponse.json({ status: "ok", message: "Order already finalized" });
     }
