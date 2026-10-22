@@ -81,7 +81,7 @@ export default async function HomePage() {
                 ].map((brand) => (
                   <div
                     key={brand.name}
-                    className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-4 shadow-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-900"
+                    className="group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-4 shadow-sm transition-all duration-300 hover:border-blue-900 hover:bg-blue-950"
                   >
                     {/* Kategori + ikon arrow */}
                     <div className="flex items-start justify-between">
@@ -128,23 +128,23 @@ export default async function HomePage() {
             <div className="relative flex flex-col items-center justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/60 p-6 text-center shadow-sm backdrop-blur-sm sm:p-8 lg:col-span-5">
               {/* Dekorasi background halus */}
               <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-slate-100/80 blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-sky-50/60 blur-3xl" />
+              <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-orange-50/60 blur-3xl" />
 
               {/* ---- Bagian Atas: Copywriting ---- */}
               <div className="relative z-10 flex flex-col items-center">
                 {/* Badge kapsul */}
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-slate-600 shadow-sm">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
                   </span>
                   Koleksi Baru Tersedia
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-5 text-4xl font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl">
+                <h1 className="mt-5 text-4xl font-extrabold leading-[1.12] tracking-tight text-blue-950 sm:text-5xl">
                   Belanja Online <br />
-                  <span className="bg-gradient-to-r from-slate-700 via-slate-500 to-slate-800 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-950 bg-clip-text text-transparent">
                     Mudah & Terpercaya
                   </span>
                 </h1>
@@ -159,7 +159,7 @@ export default async function HomePage() {
                 {/* CTA Button */}
                 <Link
                   href="/products"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg active:scale-[0.97]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-lg active:scale-[0.97]"
                 >
                   Jelajahi Katalog
                   <ArrowUpRight className="h-4 w-4" />
@@ -211,8 +211,8 @@ export default async function HomePage() {
                 ================================================================== */}
             <div className="hidden flex-col gap-4 lg:col-span-3 lg:flex">
 
-              {/* ---- Kartu 1: TokoOnline Mall (Official Store) ---- */}
-              <div className="group relative flex flex-1 flex-col justify-between overflow-hidden rounded-2xl bg-slate-950 p-6 text-white shadow-md">
+              {/* ---- Kartu 1: LAPAKKU Mall (Official Store) ---- */}
+              <div className="group relative flex flex-1 flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-6 text-white shadow-md">
                 {/* Foto produk sebagai background visual */}
                 <img
                   src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"
@@ -224,11 +224,11 @@ export default async function HomePage() {
                   }}
                 />
                 {/* Dekorasi blur */}
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-sky-500/15 blur-2xl" />
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-orange-500/15 blur-2xl" />
 
                 {/* Konten */}
                 <div className="relative z-10">
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-sky-300 backdrop-blur-sm">
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-orange-300 backdrop-blur-sm">
                     <ShieldCheck className="h-3 w-3" />
                     Official Store
                   </div>
@@ -236,9 +236,9 @@ export default async function HomePage() {
 
                 <div className="relative z-10 mt-auto">
                   <h3 className="text-lg font-bold text-white">
-                    TokoOnline Mall
+                    LAPAKKU Mall
                   </h3>
-                  <p className="text-2xl font-black text-sky-400">100% ORI</p>
+                  <p className="text-2xl font-black text-orange-400">100% ORI</p>
                   <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
                     Garansi uang kembali & produk resmi
                   </p>
@@ -254,11 +254,11 @@ export default async function HomePage() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Overlay gradasi gelap hangat */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/85 to-slate-900/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/85 to-blue-900/40" />
 
                 {/* Konten atas */}
                 <div className="relative z-10 p-6">
-                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-[11px] font-semibold text-amber-300 backdrop-blur-md">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-orange-400/30 bg-orange-500/15 px-3 py-1 text-[11px] font-semibold text-orange-300 backdrop-blur-md">
                     <Sparkles className="h-3 w-3" />
                     SPESIAL PROMO
                   </span>
@@ -267,12 +267,12 @@ export default async function HomePage() {
                 {/* Konten bawah */}
                 <div className="relative z-10 p-6 pt-0">
                   <h3 className="text-lg font-bold leading-snug text-white">
-                    TokoOnline Barokah
+                    LAPAKKU Barokah
                   </h3>
                   <p className="mt-0.5 text-sm text-slate-300">
                     Kurasi Busana & Kebutuhan Pilihan
                   </p>
-                  <span className="mt-3 inline-block rounded-xl bg-white px-3.5 py-2 text-xs font-bold text-slate-900 shadow-sm">
+                  <span className="mt-3 inline-block rounded-xl bg-orange-500 px-3.5 py-2 text-xs font-bold text-white shadow-sm">
                     DISKON S.D. 80% + VOUCHER 100RB
                   </span>
                 </div>
@@ -283,19 +283,19 @@ export default async function HomePage() {
           {/* ---- Mobile: Banner Promo (terlihat di bawah CTA) ---- */}
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
             {/* Mall Banner - Mobile */}
-            <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl bg-slate-950 p-5 text-white">
+            <div className="group relative flex items-center justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-5 text-white">
               <img
                 src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
                 alt="Sepatu sneakers"
                 className="absolute inset-0 h-full w-full object-cover opacity-15"
               />
               <div className="relative z-10">
-                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-sky-300">
+                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-orange-300">
                   <ShieldCheck className="h-3 w-3" />
                   Official Store
                 </div>
-                <h3 className="text-base font-bold">TokoOnline Mall</h3>
-                <p className="text-xl font-black text-sky-400">100% ORI</p>
+                <h3 className="text-base font-bold">LAPAKKU Mall</h3>
+                <p className="text-xl font-black text-orange-400">100% ORI</p>
               </div>
             </div>
 
@@ -306,13 +306,13 @@ export default async function HomePage() {
                 alt="Koleksi modest fashion"
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 to-slate-900/60" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 to-blue-900/60" />
               <div className="relative z-10">
-                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold text-amber-300">
+                <div className="mb-1.5 inline-flex items-center gap-1 text-[10px] font-semibold text-orange-300">
                   <Sparkles className="h-3 w-3" />
                   SPESIAL PROMO
                 </div>
-                <h3 className="text-base font-bold">TokoOnline Barokah</h3>
+                <h3 className="text-base font-bold">LAPAKKU Barokah</h3>
                 <p className="text-xs font-bold uppercase tracking-wider text-slate-300">
                   Diskon s.d. 80%
                 </p>
@@ -348,9 +348,9 @@ export default async function HomePage() {
               key={feature.title}
               className="flex items-center gap-4 px-6 py-5 sm:justify-center"
             >
-              <feature.icon className="h-6 w-6 shrink-0 text-gray-700" />
+              <feature.icon className="h-6 w-6 shrink-0 text-blue-900" />
               <div>
-                <p className="text-sm font-semibold text-gray-900">
+                <p className="text-sm font-semibold text-blue-950">
                   {feature.title}
                 </p>
                 <p className="text-xs text-gray-500">{feature.desc}</p>
@@ -367,7 +367,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+              <h2 className="text-2xl font-bold text-blue-950 sm:text-3xl">
                 Produk Terbaru
               </h2>
               <p className="mt-1 text-sm text-gray-500">
@@ -376,7 +376,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/products"
-              className="hidden items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 sm:inline-flex"
+              className="hidden items-center gap-1 text-sm font-medium text-blue-900 transition-colors hover:text-orange-500 sm:inline-flex"
             >
               Lihat Semua
               <ArrowRight className="h-4 w-4" />
@@ -390,7 +390,7 @@ export default async function HomePage() {
           <div className="mt-8 text-center sm:hidden">
             <Link
               href="/products"
-              className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+              className="inline-flex items-center gap-1 text-sm font-medium text-blue-900 transition-colors hover:text-orange-500"
             >
               Lihat Semua Produk
               <ArrowRight className="h-4 w-4" />

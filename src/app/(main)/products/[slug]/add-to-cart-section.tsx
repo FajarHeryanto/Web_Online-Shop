@@ -114,7 +114,7 @@ export function AddToCartSection({ product }: AddToCartSectionProps) {
           className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 ${
             isAdded
               ? "bg-green-600 text-white"
-              : "border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-50"
+              : "border-2 border-blue-950 bg-white text-blue-950 hover:bg-blue-50"
           }`}
         >
           {isAdded ? (
@@ -133,7 +133,7 @@ export function AddToCartSection({ product }: AddToCartSectionProps) {
         <button
           onClick={handleBuyNow}
           disabled={isOutOfStock}
-          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-gray-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
         >
           Beli Sekarang
         </button>

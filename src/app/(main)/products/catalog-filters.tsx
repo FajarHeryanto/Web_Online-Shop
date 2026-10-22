@@ -104,7 +104,7 @@ export function CatalogFilters({
           )}
           <button
             type="submit"
-            className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-gray-700"
+            className="rounded-md bg-blue-950 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-900"
           >
             Cari
           </button>
@@ -120,7 +120,7 @@ export function CatalogFilters({
             onClick={() => updateParams({ category: undefined })}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
               !currentCategory
-                ? "bg-gray-900 text-white"
+                ? "bg-blue-950 text-white"
                 : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
             }`}
           >
@@ -136,7 +136,7 @@ export function CatalogFilters({
               }
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 cat === currentCategory
-                  ? "bg-gray-900 text-white"
+                  ? "bg-blue-950 text-white"
                   : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
               }`}
             >

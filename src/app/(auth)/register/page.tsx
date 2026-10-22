@@ -97,10 +97,11 @@ export default function RegisterPage() {
         {/* Top — Logo */}
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm">
-              <Store className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-bold text-white">TokoOnline</span>
+            <img
+              src="/logo-lapakku.jpg"
+              alt="Logo Lapakku"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
         </div>
 
@@ -156,10 +157,11 @@ export default function RegisterPage() {
           </Link>
 
           <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900">
-              <Store className="h-4 w-4 text-white" />
-            </div>
-            <span className="font-bold text-gray-900">TokoOnline</span>
+            <img
+              src="/logo-lapakku.jpg"
+              alt="Logo Lapakku"
+              className="h-8 w-auto object-contain"
+            />
           </Link>
 
           <Link
@@ -349,7 +351,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-gray-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-500 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isLoading ? (
                   <>

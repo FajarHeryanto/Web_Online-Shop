@@ -15,11 +15,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "TokoOnline — Belanja Online Mudah & Terpercaya",
-    template: "%s | TokoOnline",
+    default: "LAPAKKU — Belanja Online Mudah & Terpercaya",
+    template: "%s | LAPAKKU",
   },
   description:
     "Temukan berbagai produk berkualitas dengan harga terbaik. Belanja online mudah, aman, dan terpercaya.",
+  icons: {
+    icon: "/icon-lapakku.jpg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

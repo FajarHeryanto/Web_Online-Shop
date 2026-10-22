@@ -211,7 +211,7 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
                         <span className="px-2 text-sm text-gray-400">…</span>
                       )}
                       {p === page ? (
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 text-sm font-semibold text-white">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-950 text-sm font-semibold text-white">
                           {p}
                         </span>
                       ) : (

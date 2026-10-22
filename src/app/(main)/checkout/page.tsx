@@ -195,12 +195,12 @@ export default function CheckoutPage() {
           </span>
         </p>
         <p className="mt-1 text-sm text-gray-500">
-          Terima kasih telah berbelanja di TokoOnline.
+          Terima kasih telah berbelanja di LAPAKKU.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/orders"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-900"
           >
             <Package className="h-4 w-4" />
             Lihat Pesanan Saya
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-orange-600"
         >
           <ArrowLeft className="h-4 w-4" />
           Mulai Belanja
@@ -502,7 +502,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={isLoading || !isSnapReady}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-gray-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-500 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {isLoading ? (
                     <>

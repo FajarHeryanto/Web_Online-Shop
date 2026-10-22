@@ -28,14 +28,14 @@ export function UserMenu() {
       <div className="flex items-center gap-1 text-sm">
         <Link
           href="/register"
-          className="rounded-lg px-3 py-1.5 font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          className="rounded-lg px-3 py-1.5 font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-900"
         >
           Daftar
         </Link>
         <span className="text-gray-300">|</span>
         <Link
           href="/login"
-          className="rounded-lg px-3 py-1.5 font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          className="rounded-lg px-3 py-1.5 font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-900"
         >
           Log In
         </Link>
@@ -50,9 +50,9 @@ export function UserMenu() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors hover:bg-gray-100"
+        className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors hover:bg-blue-50"
       >
-        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-900 text-white">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-900 text-white">
           <User className="h-3.5 w-3.5" />
         </div>
         <span className="hidden max-w-[100px] truncate font-medium text-gray-700 sm:inline">

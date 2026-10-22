@@ -9,44 +9,42 @@
  */
 
 import Link from "next/link";
-import { Store } from "lucide-react";
 import { CartIndicator } from "./cart-indicator";
 import { UserMenu } from "./user-menu";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 w-full border-b border-blue-900/10 bg-white/80 backdrop-blur-lg">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* ---- Logo & Brand ---- */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          className="flex items-center transition-opacity hover:opacity-80"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-900">
-            <Store className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-lg font-bold tracking-tight text-gray-900">
-            TokoOnline
-          </span>
+          <img
+            src="/logo-lapakku.jpg"
+            alt="Logo Lapakku"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
 
         {/* ---- Center: Navigation Links (Desktop) ---- */}
         <div className="hidden items-center gap-8 md:flex">
           <Link
             href="/"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
           >
             Beranda
           </Link>
           <Link
             href="/products"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
           >
             Katalog
           </Link>
           <Link
             href="/orders"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
           >
             Pesanan Saya
           </Link>

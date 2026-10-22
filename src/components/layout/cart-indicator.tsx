@@ -20,14 +20,14 @@ export function CartIndicator() {
   return (
     <Link
       href="/cart"
-      className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+      className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-900"
       aria-label={`Keranjang belanja, ${totalItems} item`}
     >
       <ShoppingCart className="h-5 w-5" />
 
       {/* Badge counter — hanya tampil jika ada item */}
       {totalItems > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-bold text-white">
+        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white">
           {totalItems > 99 ? "99+" : totalItems}
         </span>
       )}

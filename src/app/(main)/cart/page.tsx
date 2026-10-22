@@ -65,7 +65,7 @@ export default function CartPage() {
         </p>
         <Link
           href="/"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-orange-600"
         >
           <ArrowLeft className="h-4 w-4" />
           Mulai Belanja
@@ -261,7 +261,7 @@ export default function CartPage() {
             {/* Tombol Lanjut ke Pembayaran */}
             <Link
               href="/checkout"
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-semibold text-white shadow-xs transition-all hover:bg-gray-800 active:scale-[0.98]"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-500 px-4 py-3 text-sm font-semibold text-white shadow-xs transition-all hover:bg-orange-600 active:scale-[0.98]"
             >
               <span>Lanjut ke Pembayaran</span>
               <ArrowRight className="h-4 w-4" />

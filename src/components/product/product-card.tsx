@@ -63,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-200 hover:border-gray-300 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-200 hover:border-blue-900/30 hover:shadow-lg"
     >
       {/* ---- Gambar Produk ---- */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
@@ -99,7 +99,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* ---- Info Produk ---- */}
       <div className="flex flex-1 flex-col p-4">
         {/* Nama Produk */}
-        <h3 className="line-clamp-2 text-sm font-medium text-gray-900 group-hover:text-gray-700">
+        <h3 className="line-clamp-2 text-sm font-medium text-blue-950 group-hover:text-blue-800">
           {product.name}
         </h3>
 
@@ -115,7 +115,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Harga & Tombol */}
         <div className="mt-3 flex items-end justify-between gap-2">
-          <p className="text-lg font-bold text-gray-900">
+          <p className="text-lg font-bold text-blue-950">
             {formatRupiah(product.price)}
           </p>
 
@@ -130,7 +130,7 @@ export function ProductCard({ product }: ProductCardProps) {
                   ? "cursor-not-allowed bg-gray-100 text-gray-400"
                   : isAdded
                     ? "bg-green-600 text-white"
-                    : "bg-gray-900 text-white hover:bg-gray-700 active:scale-95"
+                    : "bg-orange-500 text-white hover:bg-orange-600 active:scale-95"
               }
             `}
             aria-label={
