@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "Temukan berbagai produk berkualitas dengan harga terbaik. Belanja online mudah, aman, dan terpercaya.",
   icons: {
     icon: "/icon-lapakku.jpg",
+    shortcut: "/icon-lapakku.jpg",
+    apple: "/icon-lapakku.jpg",
   },
 };
 
