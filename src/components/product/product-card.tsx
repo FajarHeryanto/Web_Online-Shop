@@ -3,7 +3,7 @@
  * @description Kartu produk untuk ditampilkan di grid katalog.
  *
  * Fitur:
- *   - Gambar produk dengan aspect ratio konsisten
+ *   - Gambar produk dengan aspect ratio konsisten + fallback onError
  *   - Nama produk (truncate jika terlalu panjang)
  *   - Harga dalam format Rupiah
  *   - Badge kategori
@@ -15,12 +15,12 @@
  * Client Component karena membutuhkan:
  *   - onClick handler (addItem ke Zustand store)
  *   - useState untuk feedback animasi tombol
+ *   - onError handler untuk fallback gambar
  */
 
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart, Check, Package } from "lucide-react";
 import { useCartStore } from "@/stores/cart-store";
@@ -34,6 +34,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
   const [isAdded, setIsAdded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
@@ -67,17 +68,18 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       {/* ---- Gambar Produk ---- */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
-        {product.imageUrl ? (
-          <Image
+        {product.imageUrl && !imgError ? (
+          <img
             src={product.imageUrl}
             alt={product.name}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImgError(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gray-50">
             <Package className="h-12 w-12 text-gray-300" />
+            <span className="text-xs text-gray-400">Gambar tidak tersedia</span>
           </div>
         )}
 
