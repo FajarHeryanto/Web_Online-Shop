@@ -1,6 +1,6 @@
 /**
  * @file components/layout/navbar.tsx
- * @description Navbar utama toko dengan session awareness.
+ * @description Navbar utama toko — Deep Navy theme dengan menu tengah presisi.
  *
  * Arsitektur:
  *   <Navbar>           → Server Component (logo, link statis)
@@ -14,46 +14,51 @@ import { UserMenu } from "./user-menu";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-blue-900/10 bg-white/80 backdrop-blur-lg">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* ---- Logo & Brand ---- */}
-        <Link
-          href="/"
-          className="flex items-center transition-opacity hover:opacity-80"
-        >
-          <img
-            src="/logo-lapakku.jpg"
-            alt="Logo Lapakku"
-            className="h-10 w-auto object-contain"
-          />
-        </Link>
-
-        {/* ---- Center: Navigation Links (Desktop) ---- */}
-        <div className="hidden items-center gap-8 md:flex">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0B2545]">
+      <nav className="mx-auto grid h-16 max-w-7xl grid-cols-3 items-center px-4 sm:px-6 lg:px-8">
+        {/* ---- Kiri: Logo & Brand ---- */}
+        <div className="flex items-center">
           <Link
             href="/"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
+            className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          >
+            <img
+              src="/icon-lapakku.jpg"
+              alt="Logo LAPAKKU"
+              className="h-9 w-9 rounded-lg object-cover"
+            />
+            <span className="text-xl font-extrabold tracking-wide text-white">
+              LAPAKKU
+            </span>
+          </Link>
+        </div>
+
+        {/* ---- Tengah: Navigation Links ---- */}
+        <div className="flex items-center justify-center gap-4 md:gap-6">
+          <Link
+            href="/"
+            className="text-sm font-medium text-slate-200 transition-colors hover:text-[#FF6B00]"
           >
             Beranda
           </Link>
           <Link
             href="/products"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
+            className="text-sm font-medium text-slate-200 transition-colors hover:text-[#FF6B00]"
           >
             Katalog
           </Link>
           <Link
             href="/orders"
-            className="text-sm font-medium text-slate-600 transition-colors hover:text-blue-900"
+            className="hidden text-sm font-medium text-slate-200 transition-colors hover:text-[#FF6B00] sm:inline"
           >
             Pesanan Saya
           </Link>
         </div>
 
-        {/* ---- Right: Cart + Auth ---- */}
-        <div className="flex items-center gap-2">
+        {/* ---- Kanan: Cart + Auth ---- */}
+        <div className="flex items-center justify-end gap-2">
           <CartIndicator />
-          <div className="mx-1 hidden h-6 w-px bg-gray-200 sm:block" />
+          <div className="mx-1 hidden h-6 w-px bg-white/20 sm:block" />
           <UserMenu />
         </div>
       </nav>

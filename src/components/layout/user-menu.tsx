@@ -1,9 +1,10 @@
 /**
  * @file components/layout/user-menu.tsx
  * @description Menu user di Navbar — otentikasi & profil.
+ * Warna: putih pada Deep Navy navbar.
  *
- * Belum login → "Daftar | Log In" (teks rapi, bukan tombol besar)
- * Sudah login → Avatar + Nama + Dropdown (Pesanan Saya, Keluar)
+ * Belum login → "Daftar | Log In" (teks putih)
+ * Sudah login → Avatar + Nama + Dropdown
  */
 
 "use client";
@@ -19,7 +20,7 @@ export function UserMenu() {
 
   // Loading skeleton
   if (status === "loading") {
-    return <div className="h-8 w-24 animate-pulse rounded-lg bg-gray-100" />;
+    return <div className="h-8 w-24 animate-pulse rounded-lg bg-white/10" />;
   }
 
   // ---- Belum Login ----
@@ -28,14 +29,14 @@ export function UserMenu() {
       <div className="flex items-center gap-1 text-sm">
         <Link
           href="/register"
-          className="rounded-lg px-3 py-1.5 font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-900"
+          className="rounded-lg px-3 py-1.5 font-medium text-white transition-colors hover:text-[#FF6B00]"
         >
           Daftar
         </Link>
-        <span className="text-gray-300">|</span>
+        <span className="text-white/30">|</span>
         <Link
           href="/login"
-          className="rounded-lg px-3 py-1.5 font-medium text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-900"
+          className="rounded-lg px-3 py-1.5 font-medium text-white transition-colors hover:text-[#FF6B00]"
         >
           Log In
         </Link>
@@ -50,16 +51,16 @@ export function UserMenu() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors hover:bg-blue-50"
+        className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors hover:bg-white/10"
       >
-        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-900 text-white">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-800 text-white">
           <User className="h-3.5 w-3.5" />
         </div>
-        <span className="hidden max-w-[100px] truncate font-medium text-gray-700 sm:inline">
+        <span className="hidden max-w-[100px] truncate font-medium text-white sm:inline">
           {session.user?.name || "User"}
         </span>
         <ChevronDown
-          className={`hidden h-3.5 w-3.5 text-gray-400 transition-transform sm:block ${isOpen ? "rotate-180" : ""}`}
+          className={`hidden h-3.5 w-3.5 text-white/50 transition-transform sm:block ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 
