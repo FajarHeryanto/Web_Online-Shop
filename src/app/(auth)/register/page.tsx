@@ -12,7 +12,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  Store,
   Loader2,
   AlertCircle,
   Mail,
@@ -97,11 +96,16 @@ export default function RegisterPage() {
         {/* Top — Logo */}
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <img
-              src="/logo-lapakku.jpg"
-              alt="Logo Lapakku"
-              className="h-10 w-auto object-contain"
-            />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1.5 shadow-sm">
+              <img
+                src="/icon-lapakku.jpg"
+                alt="LAPAKKU"
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </div>
+            <span className="text-2xl font-extrabold tracking-wide text-white">
+              LAPAKKU
+            </span>
           </Link>
         </div>
 
@@ -157,11 +161,16 @@ export default function RegisterPage() {
           </Link>
 
           <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <img
-              src="/logo-lapakku.jpg"
-              alt="Logo Lapakku"
-              className="h-8 w-auto object-contain"
-            />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1 shadow-sm">
+              <img
+                src="/icon-lapakku.jpg"
+                alt="LAPAKKU"
+                className="h-full w-full rounded object-cover"
+              />
+            </div>
+            <span className="text-lg font-extrabold tracking-wide text-gray-900">
+              LAPAKKU
+            </span>
           </Link>
 
           <Link

@@ -21,7 +21,6 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
-  Store,
   Loader2,
   AlertCircle,
   Mail,
@@ -135,11 +134,16 @@ function LoginForm() {
         {/* Top — Logo */}
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <img
-              src="/logo-lapakku.jpg"
-              alt="Logo Lapakku"
-              className="h-10 w-auto object-contain"
-            />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1.5 shadow-sm">
+              <img
+                src="/icon-lapakku.jpg"
+                alt="LAPAKKU"
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </div>
+            <span className="text-2xl font-extrabold tracking-wide text-white">
+              LAPAKKU
+            </span>
           </Link>
         </div>
 
@@ -150,7 +154,11 @@ function LoginForm() {
             Indonesia.&rdquo;
           </blockquote>
           <div className="mt-8 flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-white/10" />
+            <img
+              src="/icon-lapakku.jpg"
+              alt="LAPAKKU"
+              className="h-11 w-11 rounded-full bg-white p-1.5 object-contain shadow-md ring-2 ring-orange-500/40"
+            />
             <div>
               <p className="text-sm font-medium text-white">Tim LAPAKKU</p>
               <p className="text-xs text-gray-400">E-Commerce Terpercaya</p>
@@ -189,11 +197,16 @@ function LoginForm() {
 
           {/* Mobile Logo */}
           <Link href="/" className="flex items-center gap-2 lg:hidden">
-            <img
-              src="/logo-lapakku.jpg"
-              alt="Logo Lapakku"
-              className="h-8 w-auto object-contain"
-            />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1 shadow-sm">
+              <img
+                src="/icon-lapakku.jpg"
+                alt="LAPAKKU"
+                className="h-full w-full rounded object-cover"
+              />
+            </div>
+            <span className="text-lg font-extrabold tracking-wide text-gray-900">
+              LAPAKKU
+            </span>
           </Link>
 
           <Link
