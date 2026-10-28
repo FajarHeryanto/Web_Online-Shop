@@ -8,7 +8,6 @@
  */
 
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -97,13 +96,10 @@ export default async function ProductDetailPage({
           {/* ---- Gambar Produk ---- */}
           <div className="relative aspect-square overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
             {product.imageUrl ? (
-              <Image
+              <img
                 src={product.imageUrl}
                 alt={product.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-                priority
+                className="h-full w-full object-cover"
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center">

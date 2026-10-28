@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white font-sans text-gray-900">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-white font-sans text-gray-900">
         <AuthSessionProvider>{children}</AuthSessionProvider>
       </body>
     </html>

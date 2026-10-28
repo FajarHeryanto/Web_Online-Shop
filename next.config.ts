@@ -2,20 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com", // Cloudinary CDN
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com", // Placeholder gambar saat development
-      },
-      {
-        protocol: "https",
-        hostname: "via.placeholder.com", // Fallback placeholder
-      },
-    ],
+    // Matikan Image Optimization untuk menghemat kuota Vercel.
+    // Semua gambar sudah menggunakan <img> standar, ini hanya safety net
+    // jika ada komponen yang masih menggunakan next/image.
+    unoptimized: true,
   },
 };
 

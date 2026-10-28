@@ -25,8 +25,9 @@ import {
 import { getProducts } from "@/actions/product.actions";
 import { ProductGrid } from "@/components/product/product-grid";
 
-// Paksa Vercel selalu fetch data terbaru dari DB, bukan cache saat build
-export const dynamic = "force-dynamic";
+// Revalidate setiap 60 detik — hindari force-dynamic agar tidak
+// memicu Function Invocation pada SETIAP request (bot/crawler/user).
+export const revalidate = 60;
 
 export default async function HomePage() {
   const { data: products } = await getProducts({
@@ -125,7 +126,7 @@ export default async function HomePage() {
             {/* ==================================================================
                 KOLOM TENGAH (col-span-5) — Clean Centerpiece & Showcase
                 ================================================================== */}
-            <div className="relative flex flex-col items-center justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/60 p-6 text-center shadow-sm backdrop-blur-sm sm:p-8 lg:col-span-5">
+            <div className="relative flex flex-col items-center justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/60 p-5 text-center shadow-sm backdrop-blur-sm sm:p-8 lg:col-span-5">
               {/* Dekorasi background halus */}
               <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-slate-100/80 blur-3xl" />
               <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-orange-50/60 blur-3xl" />
@@ -142,7 +143,7 @@ export default async function HomePage() {
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-5 text-4xl font-extrabold leading-[1.12] tracking-tight text-blue-950 sm:text-5xl">
+                <h1 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-4xl sm:leading-[1.12] lg:text-5xl">
                   Belanja Online <br />
                   <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-950 bg-clip-text text-transparent">
                     Mudah & Terpercaya
@@ -159,7 +160,7 @@ export default async function HomePage() {
                 {/* CTA Button */}
                 <Link
                   href="/products"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-lg active:scale-[0.97]"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-lg active:scale-[0.97] sm:px-7 sm:py-3.5"
                 >
                   Jelajahi Katalog
                   <ArrowUpRight className="h-4 w-4" />

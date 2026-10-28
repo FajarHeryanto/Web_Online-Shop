@@ -28,6 +28,9 @@ import { OrderStatus } from "@/types";
 import { formatRupiah, formatDateTimeWIB } from "@/lib/utils";
 import { CancelOrderButton } from "../cancel-order-button";
 
+// Data pesanan memerlukan session — selalu di-render saat request.
+// Tetap dynamic karena route ini dilindungi middleware (hanya user login yang masuk),
+// sehingga tidak bisa diakses oleh bot/crawler.
 export const dynamic = "force-dynamic";
 
 /**

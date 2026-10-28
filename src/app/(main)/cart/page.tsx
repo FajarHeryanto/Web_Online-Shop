@@ -6,7 +6,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ShoppingBag,
@@ -135,12 +134,11 @@ export default function CartPage() {
                   {/* Foto Produk */}
                   <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                     {item.imageUrl ? (
-                      <Image
+                      <img
                         src={item.imageUrl}
                         alt={item.name}
-                        fill
-                        sizes="80px"
-                        className="object-cover"
+                        className="h-full w-full object-cover"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center">
