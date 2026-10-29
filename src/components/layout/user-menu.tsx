@@ -29,14 +29,14 @@ export function UserMenu() {
       <div className="flex items-center gap-1 text-sm">
         <Link
           href="/register"
-          className="hidden rounded-lg px-2.5 py-1.5 font-medium text-white transition-colors hover:text-[#FF6B00] sm:inline-block"
+          className="hidden rounded-lg px-2 py-1.5 font-medium text-white transition-colors hover:text-[#FF6B00] sm:inline-block sm:px-3"
         >
           Daftar
         </Link>
         <span className="hidden text-white/30 sm:inline">|</span>
         <Link
           href="/login"
-          className="rounded-lg px-2.5 py-1.5 text-xs font-medium text-white transition-colors hover:text-[#FF6B00] sm:text-sm"
+          className="rounded-lg px-2 py-1.5 font-medium text-white transition-colors hover:text-[#FF6B00] sm:px-3"
         >
           Log In
         </Link>
@@ -51,16 +51,16 @@ export function UserMenu() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-white/10 sm:gap-2 sm:px-2.5"
+        className="flex items-center gap-1.5 rounded-lg px-1.5 py-1.5 text-sm transition-colors hover:bg-white/10 sm:gap-2 sm:px-2.5"
       >
         <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-800 text-white">
           <User className="h-3.5 w-3.5" />
         </div>
-        <span className="hidden max-w-[80px] truncate font-medium text-white sm:inline lg:max-w-[140px]">
+        <span className="hidden max-w-[100px] truncate font-medium text-white sm:inline sm:max-w-[140px]">
           {session.user?.name || "User"}
         </span>
         <ChevronDown
-          className={`hidden h-3.5 w-3.5 shrink-0 text-white/50 transition-transform sm:block ${isOpen ? "rotate-180" : ""}`}
+          className={`hidden h-3.5 w-3.5 text-white/50 transition-transform sm:block ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
 

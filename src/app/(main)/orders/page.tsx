@@ -157,31 +157,31 @@ export default async function OrdersPage() {
                   className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-shadow hover:shadow-md"
                 >
                   {/* Header Kartu: No. Pesanan, Tanggal, & Status Badge */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/70 px-6 py-4">
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <div className="flex flex-col gap-3 border-b border-slate-100 bg-slate-50/70 px-4 py-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-6 sm:py-4">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 sm:text-xs">
                         No. Pesanan
                       </span>
-                      <span className="font-mono text-sm font-bold text-slate-800">
+                      <span className="font-mono text-xs font-bold text-slate-800 sm:text-sm">
                         {order.orderNumber}
                       </span>
                       <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-                      <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                        <Calendar className="h-3.5 w-3.5" />
+                      <div className="flex items-center gap-1.5 text-[10px] text-slate-500 sm:text-xs">
+                        <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                         <span>{formatDateTimeWIB(order.createdAt)}</span>
                       </div>
                     </div>
 
                     <div
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${statusInfo.badgeClass}`}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold sm:px-3 sm:text-xs ${statusInfo.badgeClass}`}
                     >
-                      <StatusIcon className="h-3.5 w-3.5" />
+                      <StatusIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                       <span>{statusInfo.label}</span>
                     </div>
                   </div>
 
                   {/* Isi Kartu: Daftar Item Produk */}
-                  <div className="divide-y divide-slate-100 px-6">
+                  <div className="divide-y divide-slate-100 px-4 sm:px-6">
                     {order.items.map((item) => (
                       <div
                         key={item.id}
@@ -204,8 +204,8 @@ export default async function OrdersPage() {
                           </div>
 
                           {/* Informasi Produk */}
-                          <div className="space-y-1">
-                            <h4 className="font-semibold text-slate-900 transition-colors">
+                          <div className="min-w-0 space-y-1">
+                            <h4 className="line-clamp-2 text-sm font-semibold text-slate-900 transition-colors">
                               {item.product?.name ?? "Produk"}
                             </h4>
                             <p className="text-xs text-slate-500">

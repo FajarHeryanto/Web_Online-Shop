@@ -84,7 +84,7 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
 
         {/* Badge Kategori */}
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-gray-700 shadow-sm backdrop-blur-sm">
+        <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-medium text-gray-700 shadow-sm backdrop-blur-sm sm:left-3 sm:top-3 sm:px-2.5 sm:py-1 sm:text-xs">
           {product.category}
         </span>
 
@@ -99,15 +99,15 @@ export function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* ---- Info Produk ---- */}
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
         {/* Nama Produk */}
-        <h3 className="line-clamp-2 text-sm font-medium text-blue-950 group-hover:text-blue-800">
+        <h3 className="line-clamp-2 min-h-[2.25rem] text-xs font-medium text-blue-950 group-hover:text-blue-800 sm:min-h-[2.5rem] sm:text-sm">
           {product.name}
         </h3>
 
         {/* Stok Menipis */}
         {isLowStock && (
-          <p className="mt-1 text-xs text-amber-600">
+          <p className="mt-1 text-[10px] text-amber-600 sm:text-xs">
             Sisa {product.stock} item
           </p>
         )}
@@ -116,8 +116,8 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="flex-1" />
 
         {/* Harga & Tombol */}
-        <div className="mt-3 flex items-end justify-between gap-2">
-          <p className="text-lg font-bold text-blue-950">
+        <div className="mt-2 flex items-center justify-between gap-1.5 sm:mt-3 sm:gap-2">
+          <p className="text-sm font-bold whitespace-nowrap text-blue-950 sm:text-base lg:text-lg">
             {formatRupiah(product.price)}
           </p>
 
@@ -125,8 +125,8 @@ export function ProductCard({ product }: ProductCardProps) {
             onClick={handleAddToCart}
             disabled={isOutOfStock}
             className={`
-              inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg
-              transition-all duration-200
+              inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg
+              transition-all duration-200 sm:h-9 sm:w-9
               ${
                 isOutOfStock
                   ? "cursor-not-allowed bg-gray-100 text-gray-400"
@@ -144,9 +144,9 @@ export function ProductCard({ product }: ProductCardProps) {
             }
           >
             {isAdded ? (
-              <Check className="h-4 w-4" />
+              <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             ) : (
-              <ShoppingCart className="h-4 w-4" />
+              <ShoppingCart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             )}
           </button>
         </div>

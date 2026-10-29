@@ -143,7 +143,7 @@ export default async function HomePage() {
                 </div>
 
                 {/* Headline */}
-                <h1 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-4xl sm:leading-[1.12] lg:text-5xl">
+                <h1 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-blue-950 sm:text-3xl md:text-4xl lg:text-5xl lg:leading-[1.12]">
                   Belanja Online <br />
                   <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-950 bg-clip-text text-transparent">
                     Mudah & Terpercaya
@@ -168,9 +168,9 @@ export default async function HomePage() {
               </div>
 
               {/* ---- Bagian Bawah: Aesthetic Showcase Grid ---- */}
-              <div className="relative z-10 mt-8 grid w-full grid-cols-2 gap-3.5">
+              <div className="relative z-10 mt-6 grid w-full grid-cols-2 gap-3 sm:mt-8 sm:gap-3.5">
                 {/* Kartu Skincare & Beauty */}
-                <div className="group relative h-36 overflow-hidden rounded-2xl shadow-sm">
+                <div className="group relative h-28 overflow-hidden rounded-2xl shadow-sm sm:h-36">
                   <img
                     src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80"
                     alt="Skincare dan produk kecantikan"
@@ -188,7 +188,7 @@ export default async function HomePage() {
                 </div>
 
                 {/* Kartu Modern Apparel */}
-                <div className="group relative h-36 overflow-hidden rounded-2xl shadow-sm">
+                <div className="group relative h-28 overflow-hidden rounded-2xl shadow-sm sm:h-36">
                   <img
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
                     alt="Model fashion modern"
@@ -327,7 +327,7 @@ export default async function HomePage() {
           FEATURES SECTION
           ============================================================ */}
       <section className="border-b border-gray-200 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-gray-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-gray-200 px-4 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-0">
           {[
             {
               icon: Truck,
